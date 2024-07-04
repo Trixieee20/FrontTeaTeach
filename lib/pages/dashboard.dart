@@ -27,7 +27,7 @@ class _DashboardState extends State<Dashboard> {
                   onPressed: (){
                     Navigator.pushNamed(context, '/menu');
                   },
-                  child: Text('Go to Menu'),
+                  child: Text('Go to Menuu'),
                 ),
                 ElevatedButton(
                   onPressed: (){

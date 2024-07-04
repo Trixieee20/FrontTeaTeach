@@ -9,13 +9,13 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
-  String name = '';
   String email = '';
   String password = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.fromLTRB(15.0, 50.0, 10.0, 0),
@@ -83,9 +83,9 @@ class _LoginState extends State<Login> {
                       onPressed: (){
                         if(formKey.currentState!.validate()){
                           formKey.currentState!.save();
-                          print(name);
                           print(email);
                           print(password);
+                          Navigator.pushReplacementNamed(context, '/');
                         }
                       },
                       child: Text('Login'),
@@ -94,6 +94,7 @@ class _LoginState extends State<Login> {
                         foregroundColor: Colors.white,
                       ),
                     ),
+
                     SizedBox(height: 40.0,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
