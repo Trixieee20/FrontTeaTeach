@@ -6,11 +6,22 @@ class selectedProduct extends StatefulWidget {
   const selectedProduct({super.key, required this.product});
 
   @override
-  State<selectedProduct> createState() => _selectedProductState();
+  State<selectedProduct> createState() => _selectedProductState(product: product);
 }
 
 class _selectedProductState extends State<selectedProduct> {
+  final Product product;
+  late double totalAmount = product.price;
+  int numberOfOrders = 1;
+
+  _selectedProductState({required this.product});
+
   @override
+  void initState() {
+    super.initState();
+    totalAmount = product.price;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -27,8 +38,44 @@ class _selectedProductState extends State<selectedProduct> {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-             Text(widget.product.price.toString()),
+             Text(
+                '₱ ${totalAmount.toString()}',
+               style:  TextStyle(
+                 fontSize: 20.0,
+               ),
+             ),
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: (){
+                        setState(() {
+                          if(numberOfOrders > 1){
+                            numberOfOrders -= 1;
+                            totalAmount = product.price * numberOfOrders;
+                          }
+                        });
+                      },
+                    icon: Icon(Icons.remove)
+                  ),
+                  Text(
+                      numberOfOrders.toString(),
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: (){
+                        setState(() {
+                         numberOfOrders +=1;
+                         totalAmount = product.price * numberOfOrders;
+                        });
+                     },
+                    icon: Icon(Icons.add)
+                  ),
+                ],
+              )
             ],
           ),
         ],
