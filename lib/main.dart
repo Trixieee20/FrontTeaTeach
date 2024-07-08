@@ -4,6 +4,7 @@ import 'package:untitled1/pages/Signup.dart';
 import 'package:untitled1/pages/Login.dart';
 import 'package:untitled1/pages/dashboard.dart';
 import 'package:untitled1/pages/menu.dart';
+import 'package:untitled1/pages/selectedProduct.dart';
 
 void main() => runApp(MaterialApp(
     initialRoute: '/Login',
