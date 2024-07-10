@@ -9,7 +9,7 @@ import 'package:untitled1/pages/selectedProduct.dart';
 void main() => runApp(MaterialApp(
     initialRoute: '/Login',
     routes: {
-        '/' : (context) => Dashboard(),
+        '/dashboard' : (context) => Dashboard(),
         '/menu' : (context) => Menu(),
         '/profile' : (context) => Home(),
         '/Signup' : (context) => Signup(),
