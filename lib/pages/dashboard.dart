@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -11,22 +12,88 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text(
-              'Home'
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(15.0, 50.0, 10.0, 0),
+            child: Container(
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Center(
+                        child: Image(
+                          image: AssetImage('assets/Sharetea+logo.png'),
+                        ),
+                      ),
+                      TextField(
+                        decoration: InputDecoration(
+                          label: Text(
+                            'Search your favorites',
+                            style: TextStyle(
+                              color: Colors.grey[500]
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: BorderSide.none
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          prefixIcon: Icon(
+                            Icons.search
+                          ),
+                          prefixIconColor: Colors.grey[500],
+                          hintText: 'Search your favorites',
+                          hintStyle: TextStyle(
+                            color: Colors.grey[500]
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[300]
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 50.0, 0, 0),
+                        child: ExpandableCarousel(
+                          options: CarouselOptions(
+                            autoPlay: true,
+                            autoPlayInterval: const Duration(seconds: 5),
+                          ),
+                          items: [
+                            'assets/carousel3.jpg',
+                            'assets/carousel1.jpg',
+                            'assets/carousel4.jpg',
+                          ].map((String imagePath) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                    decoration: BoxDecoration(
+                                        color: Colors.pink
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: Image.asset(
+                                        imagePath,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                );
+                              },
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
-        centerTitle: true,
-        backgroundColor: Colors.orange[400],
-      ),
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/sharetea.jpg'),
-              fit: BoxFit.cover
-            )
-          ),
-        ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 3.0,
@@ -46,16 +113,16 @@ class _DashboardState extends State<Dashboard> {
         currentIndex: 0,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.fastfood),
-            label: 'Menu'
+              label: 'Menu'
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
       ),
