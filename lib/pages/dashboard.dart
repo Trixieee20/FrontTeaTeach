@@ -18,28 +18,48 @@ class _DashboardState extends State<Dashboard> {
         centerTitle: true,
         backgroundColor: Colors.orange[400],
       ),
-      body: Container(
-        child:  SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                ElevatedButton(
-                  onPressed: (){
-                    Navigator.pushNamed(context, '/menu');
-                  },
-                  child: Text('Go to Menuu'),
-                ),
-                ElevatedButton(
-                  onPressed: (){
-                    Navigator.pushNamed(context, '/profile');
-                  },
-                  child: Text('Go to Profile'),
-                ),
-              ],
-            ),
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/sharetea.jpg'),
+              fit: BoxFit.cover
+            )
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 3.0,
+        onTap: (int val){
+          switch(val){
+            case 0:
+              Navigator.pushNamed(context, '/');
+              break;
+            case 1:
+              Navigator.pushNamed(context, '/menu');
+              break;
+            case 2:
+              Navigator.pushNamed(context, '/profile');
+              break;
+          }
+        },
+        currentIndex: 0,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.fastfood),
+            label: 'Menu'
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+          ),
+        ],
       ),
     );
   }
 }
+

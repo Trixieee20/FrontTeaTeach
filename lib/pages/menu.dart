@@ -18,7 +18,7 @@ class _MenuState extends State<Menu> {
   late Future<List<dynamic>> products;
   Future<List<dynamic>> fetchData()async{
     final response = await http.get(
-        Uri.parse('http://10.0.2.2:8080/api/v1/products')
+        Uri.parse('http://10.0.2.2:8080/api/v1/Product/all')
     );
     final data = jsonDecode(response.body);
     print(data);
@@ -82,9 +82,11 @@ class _MenuState extends State<Menu> {
                                 color: Colors.brown[100],
                                 fontSize: 15.0
                               ),
-
-                            )
+                            ),
                           ],
+                        ),
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(products[index].url),
                         ),
                         onTap: () {
                           Navigator.push(
