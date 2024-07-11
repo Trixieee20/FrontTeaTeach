@@ -79,6 +79,27 @@ class _selectedProductState extends State<selectedProduct> {
               )
             ],
           ),
+          const SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: (){},
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange[600],
+                foregroundColor: Colors.grey[200]
+            ),
+            child:  const Row(
+              children: <Widget>[
+                Icon(Icons.add_shopping_cart),
+                SizedBox(width: 80,),
+                Text(
+                    'Add to Cart',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+
+          )
         ],
       ),
     );
